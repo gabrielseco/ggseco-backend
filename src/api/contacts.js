@@ -25,6 +25,7 @@ export default function Contacts() {
       res.status(409).send({
         message: 'Some fields such as name or email are empty'
       })
+      return;
     }
 
 
