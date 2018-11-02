@@ -20,6 +20,14 @@ export default function Contacts() {
 
 		const { name, email, subject, body } = req.body;
 
+
+    if (name === undefined || email === undefined ) {
+      res.status(409).send({
+        message: 'Some fields such as name or email are empty'
+      })
+    }
+
+
 		const mail = {
 			from: `${name} <${email}>`,
 			to: process.env.MAIL_USER,
