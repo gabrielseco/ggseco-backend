@@ -8,12 +8,13 @@
     "build": "babel src -s -D -d dist --presets es2015,stage-0",
     "start": "node dist",
     "prestart": "npm run -s build",
+    "postman": "babel-node --presets es2015,stage-0 \"src/postman/index.js\"",
     "test": "eslint src"
   },
   "eslintConfig": {
     "extends": "eslint:recommended",
     "parserOptions": {
-      "ecmaVersion": 7,
+      "ecmaVersion": 2017,
       "sourceType": "module"
     },
     "env": {
