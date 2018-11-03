@@ -46,7 +46,7 @@ export default function Contacts() {
     
     if (validatorArrayShouldBeZero.length !== 0) {
       res.status(409).send({
-        message: 'Some fields such as name or email are empty'
+        message: 'Some fields are empty'
       })
       return;
     }
