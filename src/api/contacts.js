@@ -56,7 +56,14 @@ export default function Contacts() {
       from: `${name} <${email}>`,
       to: process.env.MAIL_USER,
       subject: subject,
-      html: `<p>${body}</p>`
+      html: `
+      <div>
+        <p>Nombre: ${name}</p>
+        <p>Email: ${email}</p>
+        <p>Asunto: ${subject}</p>
+        <p>${body}</p>
+      </div>
+      `
     }
 
     smtpTransport.sendMail(mail, function (error, response) {
