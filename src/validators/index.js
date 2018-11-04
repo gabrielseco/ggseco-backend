@@ -16,9 +16,15 @@ const Validators = () => {
     return value !== undefined && value !== null && value !== typeDefaultValue;
   }
 
+  const isEmailValid = (value) => {
+    const regex = /\S+@\S+\.\S+/;
+    return regex.test(value);
+  }
+
   return {
     types,
     isRequired,
+    isEmailValid
   }
 }
 

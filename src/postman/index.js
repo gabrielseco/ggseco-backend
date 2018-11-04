@@ -21,6 +21,19 @@ const contacts = Contacts(api);
 (async() => {
   let message = {
     "name":"gabriel", 
+    "email":"gabriel.garcia.amaris", 
+    "subject": "prueba con postman", 
+    "body": "llaalalalalland"
+  }
+  
+  console.log('Exectuting api with an incorrect email and the arguments are', message)
+  
+  await executeCommand(contacts.createContact(message));
+})();
+
+(async() => {
+  let message = {
+    "name":"gabriel", 
     "email":"gabriel.garcia.amaris@gmail.com", 
     "subject": "prueba con postman", 
     "body": "llaalalalalland"

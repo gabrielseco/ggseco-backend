@@ -33,13 +33,14 @@ export default function Contacts() {
     const validators = new Validators();
 
     const nameIsValid = validators.isRequired(name, validators.types.STRING);
-    const emailIsValid = validators.isRequired(email, validators.types.STRING);
+    const emailIsRequired = validators.isRequired(email, validators.types.STRING);
+    const emailIsValid = validators.isEmailValid(email);
     const subjectIsValid = validators.isRequired(subject, validators.types.STRING);
     const bodyIsValid = validators.isRequired(body, validators.types.STRING);
     
     const validatorArrayShouldBeZero = [
       nameIsValid,
-      emailIsValid,
+      emailIsRequired,
       subjectIsValid,
       bodyIsValid
     ].filter(validator => validator === false);
@@ -47,6 +48,13 @@ export default function Contacts() {
     if (validatorArrayShouldBeZero.length !== 0) {
       res.status(409).send({
         message: 'Some fields are empty'
+      })
+      return;
+    }
+
+    if (emailIsValid === false) {
+      res.status(409).send({
+        message: 'The email is invalid'
       })
       return;
     }
