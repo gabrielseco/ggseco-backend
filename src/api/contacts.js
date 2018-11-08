@@ -97,8 +97,10 @@ export default function Contacts() {
     const data = await recaptchaService.validate(token, ip);
 
     try {
+      console.log('data recatpcha', data);
       res.send(data);
     } catch(err) {
+      console.log('error recatpcha', data);
       res.send(err);
     }
   });
