@@ -37,14 +37,14 @@ export default function Contacts() {
     const emailIsValid = validators.isEmailValid(email);
     const subjectIsValid = validators.isRequired(subject, validators.types.STRING);
     const bodyIsValid = validators.isRequired(body, validators.types.STRING);
-    
+
     const validatorArrayShouldBeZero = [
       nameIsValid,
       emailIsRequired,
       subjectIsValid,
       bodyIsValid
     ].filter(validator => validator === false);
-    
+
     if (validatorArrayShouldBeZero.length !== 0) {
       res.status(409).send({
         message: 'Some fields are empty'
@@ -86,7 +86,17 @@ export default function Contacts() {
       smtpTransport.close();
     });
   }
+
+  const validateRecaptcha = (req, res) => {
+    console.log(req.body.token);
+
+    res.send({
+      message: 'Token service'
+    })
+  }
+
   return {
     sendEmail,
+    validateRecaptcha
   }
 }

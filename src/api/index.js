@@ -6,7 +6,8 @@ export default () => {
 	let api = Router();
 	let contacts = Contacts();
 
-	api.use('/contacts', contacts.sendEmail);
+	api.post('/contacts', contacts.sendEmail);
+	api.post('/contacts/validateRecaptcha', contacts.validateRecaptcha)
 
 	// perhaps expose some API metadata at the root
 	api.get('/', (req, res) => {

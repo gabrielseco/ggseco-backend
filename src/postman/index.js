@@ -43,3 +43,12 @@ const contacts = Contacts(api);
   
   await executeCommand(contacts.createContact(message));
 })();
+
+
+(async() => {
+  let message = {
+    "token":"3039Z2390I39E0sdijosddsjio", 
+  }
+  console.log('Validation recaptcha', message);
+  await executeCommand(contacts.validateRecaptcha(message));
+})();

@@ -1,14 +1,19 @@
+import Curl from './curl';
+
 export default function Contacts(api) {
 
-  const endpoint = api + '/contacts';
-  
   const createContact = (message) => {
-    return `
-      curl -d '${JSON.stringify(message)}' -H "Content-Type: application/json" -X POST ${endpoint}
-    `
+    const endpoint = api + '/contacts';
+    return new Curl().post(endpoint, message);
   }
-  
+
+  const validateRecaptcha = (message) => {
+    const endpoint = api + '/contacts/validateRecaptcha';
+    return new Curl().post(endpoint, message);
+  }
+
   return {
-    createContact 
+    createContact,
+    validateRecaptcha
   }
 }
