@@ -1,5 +1,6 @@
 import nodemailer from 'nodemailer';
 import Validators from '../validators';
+import RecaptchaService from './../services/recaptcha';
 
 const createTransportLayer = ({
   service,
@@ -87,13 +88,20 @@ export default function Contacts() {
     });
   }
 
-  const validateRecaptcha = (req, res) => {
-    console.log(req.body.token);
+  const validateRecaptcha = (async (req, res) => {
+    const recaptchaService = new RecaptchaService();
+    
+    const ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+    const token = req.body.token;
+    
+    const data = await recaptchaService.validate(token, ip);
 
-    res.send({
-      message: 'Token service'
-    })
-  }
+    try {
+      res.send(data);
+    } catch(err) {
+      res.send(err);
+    }
+  });
 
   return {
     sendEmail,

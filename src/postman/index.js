@@ -5,7 +5,7 @@ const api = 'http://localhost:8080/api'
 
 const contacts = Contacts(api);
 
-(async () => {
+/* (async () => {
   let message = {
     "name":"", 
     "email":"", 
@@ -42,7 +42,7 @@ const contacts = Contacts(api);
   console.log('Exectuting api with this arguments', message)
   
   await executeCommand(contacts.createContact(message));
-})();
+})(); */
 
 
 (async() => {
