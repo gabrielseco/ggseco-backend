@@ -10,7 +10,9 @@ const RecaptchaService = () => {
       remoteip: ip
     };
 
-    const data = await r2(api, payload).json;
+    const endpoint = api + `?secret=${payload.secret}&response=${payload.response}&remoteip=${payload.remoteip}`;
+
+    const data = await r2.get(endpoint).json;
     
     return data;
   });
