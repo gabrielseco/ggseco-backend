@@ -65,6 +65,7 @@ export default function Contacts() {
       res.status(409).send({
         message: 'The score is not enough'
       })
+      return;
     }
 
 
