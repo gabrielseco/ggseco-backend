@@ -28,7 +28,8 @@ export default function Contacts() {
       name,
       email,
       subject,
-      body
+      body,
+      score,
     } = req.body;
 
     const validators = new Validators();
@@ -58,6 +59,12 @@ export default function Contacts() {
         message: 'The email is invalid'
       })
       return;
+    }
+    
+    if (score < 0.5) {
+      res.status(409).send({
+        message: 'The score is not enough'
+      })
     }
 
 
@@ -97,10 +104,8 @@ export default function Contacts() {
     const data = await recaptchaService.validate(token, ip);
 
     try {
-      console.log('data recatpcha', data);
       res.send(data);
     } catch(err) {
-      console.log('error recatpcha', data);
       res.send(err);
     }
   });
